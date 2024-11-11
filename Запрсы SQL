@@ -1,0 +1,12 @@
+# Гречнева Екатерина, 23-я когорта — Финальный проект. Инженер по тестированию расширенный
+# Задание 1
+# Cписок логинов курьеров с количеством их заказов в статусе «В доставке» (поле inDelivery = true).
+
+
+SELECT c.login, COUNT(o.*) AS order_count FROM "Couriers" c JOIN "Orders" o ON c.id = o."courierId" WHERE o."inDelivery" = true GROUP BY c.login;
+
+
+# Задание 2
+# Трекеры заказов и их статусы
+
+SELECT "Orders"."track", CASE WHEN "Orders"."finished" = True THEN 2 WHEN "Orders"."cancelled" = True THEN -1 WHEN "Orders"."inDelivery" = True THEN 1 ELSE 0 END as expectedStatus FROM "Orders";
